@@ -7,6 +7,8 @@ maintainer:         baalique@gmail.com
 extra-source-files: 
     CHANGELOG.md
     README.md
+data-files:
+    data/quotes.csv
 
 executable stockquotes
     main-is:          Main.hs
