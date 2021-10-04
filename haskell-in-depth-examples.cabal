@@ -12,7 +12,14 @@ data-files:
 
 executable stockquotes
     main-is:          Main.hs
-    other-modules:    Params
-    build-depends:    base ^>=4.14.3.0
+    other-modules:
+        Params
+      , QuoteData
+    build-depends:    
+        base ^>=4.14.3.0
+      , bytestring
+      , parsec
+      , text
+      , time
     hs-source-dirs:   stockquotes
     default-language: Haskell2010
