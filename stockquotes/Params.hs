@@ -1,5 +1,5 @@
 module Params
-    ( getParams
+    ( getParams, Params(..),
     ) where
 
 import           System.Console.GetOpt          ( ArgDescr(NoArg, ReqArg)
