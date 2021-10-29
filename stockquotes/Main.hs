@@ -1,10 +1,14 @@
 module Main where
 
-import           Control.Monad                  ( guard )
+import           Control.Monad                  ( guard
+                                                , when
+                                                )
 import qualified Data.ByteString.Lazy          as BL
 import           Data.Either                    ( fromRight
                                                 , isRight
                                                 )
+import           Data.Maybe                     ( isJust )
+import           HtmlReport
 import           Params
 import           QuoteData
 import           Statistics
@@ -21,5 +25,6 @@ main = do
     csvData <- BL.readFile (filename $ fromRight undefined params)
     let parsed = parseCSV csvData
         stats  = getStats parsed 4
+        html   = htmlFilename $ fromRight undefined params
+    saveHtml html (htmlReport "Stockquotes data" parsed (getStatsEntriesFromStats stats))
     print stats
-

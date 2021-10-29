@@ -1,6 +1,7 @@
 module Statistics where
 
 import           Data.List
+import           Fmt
 import           QuoteData
 
 data Field = Open | Close | High | Low | Volume deriving Show
@@ -19,6 +20,9 @@ data StatValue = StatValue
     , value         :: Double
     }
     deriving Show
+
+instance Buildable StatValue where
+  build v = fixedF (decimalPlaces v) (value v)
 
 data Stats = Stats
     { openStats   :: StatEntry
@@ -52,3 +56,13 @@ getDaysBetween ds = abs (minDay - maxDay)
     minDay  = head indices
     maxDay  = last indices
     indices = map fst $ sortOn snd $ zip [0 ..] ds
+
+decimalPrecision :: Int
+decimalPrecision = 2
+
+showPrice :: Double -> Builder
+showPrice = fixedF decimalPrecision
+
+getStatsEntriesFromStats :: Stats -> [StatEntry]
+getStatsEntriesFromStats stats =
+  [openStats stats, closeStats stats, lowStats stats, highStats stats, volumeStats stats]

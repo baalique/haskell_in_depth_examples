@@ -13,12 +13,17 @@ data-files:
 executable stockquotes
     main-is:          Main.hs
     other-modules:
-        Params
+        HtmlReport
+      , Params
       , QuoteData
       , Statistics
     build-depends:    
         base ^>=4.14.3.0
+      , blaze-colonnade
+      , blaze-html
       , bytestring
+      , colonnade
+      , fmt
       , parsec
       , text
       , time
