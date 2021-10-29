@@ -15,6 +15,7 @@ executable stockquotes
     other-modules:
         Params
       , QuoteData
+      , Statistics
     build-depends:    
         base ^>=4.14.3.0
       , bytestring

@@ -7,6 +7,7 @@ import           Data.Either                    ( fromRight
                                                 )
 import           Params
 import           QuoteData
+import           Statistics
 import           System.Environment             ( getArgs )
 
 main :: IO ()
@@ -18,4 +19,7 @@ main = do
     let params = getParams args
     guard $ isRight params
     csvData <- BL.readFile (filename $ fromRight undefined params)
-    print $ parseCSV csvData
+    let parsed = parseCSV csvData
+        stats  = getStats parsed 4
+    print stats
+
